@@ -21,7 +21,7 @@ namespace HttpContextProject.Controllers
             ViewData["Message"] = "This is our default message for About Page!";
             return View();
         }
-    }
+    } 
 }
 
 namespace HttpContextProject.Helpers
