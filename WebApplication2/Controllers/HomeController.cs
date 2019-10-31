@@ -1,37 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using HttpContextProject.Helpers;
+using HttpContextProject.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using WebApplication2.Models;
+using System.Diagnostics;
 
-namespace WebApplication2.Controllers
+namespace HttpContextProject.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult About()
         {
+            // handle the request and do something  
+            var requestHandler = new RequestHandler();
+            requestHandler.HandleAboutRequest(); 
+
+            ViewData["Message"] = "This is our default message for About Page!";
             return View();
         }
+    }
+}
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+namespace HttpContextProject.Helpers
+{
+    public class RequestHandler
+    {
+        internal void HandleAboutRequest()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            // do something here  
         }
     }
 }
